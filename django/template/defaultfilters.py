@@ -432,6 +432,20 @@ def cut(value, arg):
     return value
 
 
+@register.filter
+@stringfilter
+def split_lines(value):
+    """
+    Return a list of strings split on the newline ("\n" or "\r\n") character
+    Removes any blank lines
+    """
+    if '\r' in value:
+        return [val for val in value.split('\r\n') if val != '']
+    else:
+        return [val for val in value.split('\n') if val != '']
+
+
+
 ###################
 # HTML STRINGS    #
 ###################
